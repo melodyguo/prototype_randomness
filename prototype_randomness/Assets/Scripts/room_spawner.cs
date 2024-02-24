@@ -4,15 +4,54 @@ using UnityEngine;
 
 public class room_spawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int openDirection;
+    //1 down
+    //2 upper
+    //3 left
+    //4 right
+
+    private room_template templates;
+    private int rand;
+    private bool spawned = false;
     void Start()
     {
-        
+        templates = GameObject.FindGameObjectWithTag("rooms").GetComponent<room_template>();
+        Invoke("Spawn", 1.0f);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Spawn()
     {
-        
+        if (spawned == false)
+        {
+            if (openDirection == 1)
+            {
+                rand = Random.Range(0, templates.downRoom.Length);
+                Instantiate(templates.downRoom[rand], transform.position, templates.downRoom[rand].transform.rotation);
+            }
+            else if (openDirection == 2)
+            {
+                rand = Random.Range(0, templates.upperRoom.Length);
+                Instantiate(templates.upperRoom[rand], transform.position, templates.upperRoom[rand].transform.rotation);
+            }
+            else if (openDirection == 3)
+            {
+                rand = Random.Range(0, templates.leftRoom.Length);
+                Instantiate(templates.leftRoom[rand], transform.position, templates.leftRoom[rand].transform.rotation);
+            }
+            else if (openDirection == 4)
+            {
+                rand = Random.Range(0, templates.rightRoom.Length);
+                Instantiate(templates.rightRoom[rand], transform.position, templates.rightRoom[rand].transform.rotation);
+            }
+            spawned = true;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("spawn"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
+
