@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7056489578931173875}
   - component: {fileID: 3613373094100205669}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lines (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3035396768303053089}
   - component: {fileID: 3138786587463215643}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: knob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2888216906341050194}
   - component: {fileID: 8795793614420500293}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: knob (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5136456609853738298}
   - component: {fileID: 5766026135429489522}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 8493083237474727901}
   - component: {fileID: 7423732220309606442}
   - component: {fileID: 3828032908302631236}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hatch
   m_TagString: room
   m_Icon: {fileID: 0}
@@ -488,7 +488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb6d268f855ce548a1026cd1ab534f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customImage: {fileID: 0}
 --- !u!1 &3581516536755613123
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9156239484902331164}
   - component: {fileID: 3023525956805666654}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5345032236212945346}
   - component: {fileID: 1904467187735422931}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,7 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5653459782042444084}
   - component: {fileID: 3692574475194414735}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lines (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -751,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8794333976536527328}
   - component: {fileID: 8150726646745877853}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lines (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6867303677174600585}
   - component: {fileID: 5471589361303085001}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

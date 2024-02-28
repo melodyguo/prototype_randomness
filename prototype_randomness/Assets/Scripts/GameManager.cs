@@ -15,11 +15,13 @@ public class GameManager : MonoBehaviour
     public GameObject background;
     public AudioSource jumpscareSFX;
     public GameObject jumpscare;
+    public float jumpscareDuration = 3f;
     public room_template roomTemplate;
+    public GameObject winScreen;
+    public AudioSource winSFX;
     
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
         // Ensure there is only one instance of the GameManager
         if (instance == null)
         {
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         jumpscare.SetActive(false);
+        winScreen.SetActive(false);
         Instantiate(roomSpawner, new Vector3(0f, 0f, 0f), Quaternion.identity);
     }
 
@@ -60,22 +63,27 @@ public class GameManager : MonoBehaviour
         roomTemplate.spawned_end = false;
         roomTemplate.waitTime = 4f;
         Instantiate(roomSpawner, player.gameObject.transform.position - spawnOffset, Quaternion.identity);
-        background.transform.position = player.gameObject.transform.position - spawnOffset;
+        background.transform.position = player.gameObject.transform.position - spawnOffset + new Vector3(0.5f, 0.5f, 0f);
     }
 
     public void JumpScare()
     {
-        StartCoroutine(PlayJumpScare());
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
+        jumpscare.SetActive(true);
+        jumpscareSFX.Play();
     }
 
     IEnumerator PlayJumpScare()
     {
         jumpscareSFX.Play();
         jumpscare.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(jumpscareDuration);
         jumpscare.SetActive(false);
-        jumpscareSFX.Stop();
+        jumpscareSFX.Pause();
+    }
+
+    public void Win()
+    {
+        winScreen.SetActive(true);
+        winSFX.Play();
     }
 }

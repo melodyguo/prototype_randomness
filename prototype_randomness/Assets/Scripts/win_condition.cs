@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class win_condition : MonoBehaviour
 {
-    [SerializeField] private Image customImage;
-    AudioSource audios;
-
+    private bool winplayed = false; 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (winplayed) return;
+        
         if (other.CompareTag("Player"))
         {
-            customImage.enabled = true;
-            audios.Play();
+            GameManager.instance.Win();
+            winplayed = true;
         }
     }
 }

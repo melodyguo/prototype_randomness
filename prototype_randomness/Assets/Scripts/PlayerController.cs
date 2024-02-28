@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public Transform movePoint;
     public LayerMask obstacleLayer;
+    public LayerMask winLayer;
+    private bool done = false;
 
     [Header("Torch")] 
     public Light2D torch;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         movePoint.parent = null;
+        done = false;
         torch.pointLightOuterRadius = maxRadius;
         decreaseTorchBy = maxRadius / torchSteps;
         litTorchSFX.Play();
@@ -39,7 +42,8 @@ public class PlayerController : MonoBehaviour
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
             CheckTorchRefill();
-            CheckForInputs();
+            CheckWin();
+            if (!done) CheckForInputs();
         }
     }
 
@@ -87,6 +91,7 @@ public class PlayerController : MonoBehaviour
             if (flames.Count <= 0)
             {
                 GameManager.instance.JumpScare();
+                done = true;
             }
             else
             {
@@ -110,6 +115,16 @@ public class PlayerController : MonoBehaviour
         if (Physics2D.OverlapCircle(transform.position, 0.2f, refillLayer))
         {
             torch.pointLightOuterRadius = maxRadius;
+        }
+    }
+
+    void CheckWin()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, winLayer))
+        {
+            if (done) return;
+            GameManager.instance.Win();
+            done = true;
         }
     }
 }
