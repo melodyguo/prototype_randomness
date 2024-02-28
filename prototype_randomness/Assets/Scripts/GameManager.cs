@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public Vector3 spawnOffset = new Vector3(0.09f, -0.25f, 0f);
     public GameObject roomSpawner;
+    public AudioSource reshuffleSFX;
+    public GameObject background;
     
     void Awake()
     {
@@ -55,11 +57,13 @@ public class GameManager : MonoBehaviour
 
     public void Reshuffle()
     {
+        reshuffleSFX.Play();
         GameObject[] rooms = GameObject.FindGameObjectsWithTag("room");
         foreach (GameObject room in rooms)
         {
             Destroy(room);
         }
-        Instantiate(roomSpawner, player.gameObject.transform.position - spawnOffset, Quaternion.identity); 
+        Instantiate(roomSpawner, player.gameObject.transform.position - spawnOffset, Quaternion.identity);
+        background.transform.position = player.gameObject.transform.position - spawnOffset;
     }
 }

@@ -10,7 +10,7 @@ public class add_room : MonoBehaviour
     void Start()
     {
         // random chance of spawning a torch object in the center
-        if (Random.Range(0, 10) == 1)
+        if (Random.Range(0, 5) == 1)
         {
             if (torchPrefab)
             {
