@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject background;
     public AudioSource jumpscareSFX;
     public GameObject jumpscare;
+    public room_template roomTemplate;
     
     void Awake()
     {
@@ -55,6 +56,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(room);
         }
+
+        roomTemplate.spawned_end = false;
+        roomTemplate.waitTime = 4f;
         Instantiate(roomSpawner, player.gameObject.transform.position - spawnOffset, Quaternion.identity);
         background.transform.position = player.gameObject.transform.position - spawnOffset;
     }
@@ -70,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         jumpscareSFX.Play();
         jumpscare.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
         jumpscare.SetActive(false);
         jumpscareSFX.Stop();
     }

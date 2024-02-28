@@ -235,6 +235,7 @@ MonoBehaviour:
   background: {fileID: 998445069}
   jumpscareSFX: {fileID: 372413933}
   jumpscare: {fileID: 584104889}
+  roomTemplate: {fileID: 350307944}
 --- !u!4 &198145279
 Transform:
   m_ObjectHideFlags: 0
@@ -779,6 +780,7 @@ MonoBehaviour:
   closedroom: {fileID: 3826262551400408399, guid: 6651e25128e82444fb23d4ec05c52c6d, type: 3}
   rooms: []
   waitTime: 4
+  spawned_end: 0
   End: {fileID: 3199789509111275301, guid: 8c031bb03bb58024c850a2a6966c2914, type: 3}
 --- !u!4 &350307945
 Transform:

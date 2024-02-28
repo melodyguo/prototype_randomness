@@ -13,7 +13,7 @@ public class room_template : MonoBehaviour
     public List<GameObject> rooms;
 
     public float waitTime;
-    private bool spawned_end;
+    public bool spawned_end;
     public GameObject End;
     
     void Update()
