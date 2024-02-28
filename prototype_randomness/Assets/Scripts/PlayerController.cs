@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
             // consume flame
             if (flames.Count <= 0)
             {
-                // todo: die
+                GameManager.instance.JumpScare();
             }
             else
             {

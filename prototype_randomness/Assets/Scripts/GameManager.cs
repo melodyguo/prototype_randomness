@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    public float timer;
-    public TMP_Text timerText;
+    
     public GameObject player;
     public Vector3 spawnOffset = new Vector3(0.09f, -0.25f, 0f);
     public GameObject roomSpawner;
     public AudioSource reshuffleSFX;
     public GameObject background;
+    public AudioSource jumpscareSFX;
+    public GameObject jumpscare;
     
     void Awake()
     {
@@ -32,21 +32,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        timerText.text = Mathf.Ceil(timer).ToString();
+        jumpscare.SetActive(false);
         Instantiate(roomSpawner, new Vector3(0f, 0f, 0f), Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // update timer
-        timer -= Time.deltaTime;
-        timerText.text = Mathf.Ceil(timer).ToString();
-        if (timer <= 0)
-        {
-            // todo: death
-        }
-        
         // restart when r is pressed
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -65,5 +57,21 @@ public class GameManager : MonoBehaviour
         }
         Instantiate(roomSpawner, player.gameObject.transform.position - spawnOffset, Quaternion.identity);
         background.transform.position = player.gameObject.transform.position - spawnOffset;
+    }
+
+    public void JumpScare()
+    {
+        StartCoroutine(PlayJumpScare());
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    IEnumerator PlayJumpScare()
+    {
+        jumpscareSFX.Play();
+        jumpscare.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        jumpscare.SetActive(false);
+        jumpscareSFX.Stop();
     }
 }
