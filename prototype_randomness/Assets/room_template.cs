@@ -8,15 +8,8 @@ public class room_template : MonoBehaviour
     public GameObject[] downRoom;
     public GameObject[] leftRoom;
     public GameObject[] rightRoom;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject closedroom;
+    public List<GameObject> rooms;
+    
 }

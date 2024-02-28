@@ -50,7 +50,12 @@ public class room_spawner : MonoBehaviour
     {
         if (other.CompareTag("spawn"))
         {
-            Destroy(gameObject);
+            if (other.GetComponent<room_spawner>().spawned == false && spawned == false)
+            {
+                Instantiate(templates.closedroom, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            spawned = true;
         }
     }
 }
