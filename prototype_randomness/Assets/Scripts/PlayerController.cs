@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public float decreaseTorchBy = 1f;
     public List<GameObject> flames;
     public LayerMask refillLayer;
+    public AudioSource litTorchSFX;
+    public AudioSource extinquishSFX;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
         movePoint.parent = null;
         torch.pointLightOuterRadius = maxRadius;
         decreaseTorchBy = maxRadius / torchSteps;
+        litTorchSFX.Play();
     }
 
     // Update is called once per frame
@@ -71,12 +74,14 @@ public class PlayerController : MonoBehaviour
     void UpdateTorch()
     {
         float torchRadius = torch.pointLightOuterRadius - decreaseTorchBy;
+        litTorchSFX.volume = torchRadius / maxRadius;
         
         // no light :(
         if (torchRadius < 0f)
         {
             // reset torch
             torch.pointLightOuterRadius = maxRadius;
+            litTorchSFX.volume = 1.0f;
             
             // consume flame
             if (flames.Count <= 0)
@@ -84,10 +89,14 @@ public class PlayerController : MonoBehaviour
                 // todo: die
             }
             else
-            { 
+            {
+                extinquishSFX.Play();
+                
                 GameObject flame = flames[0];
                 flames.Remove(flame);
                 Destroy(flame);
+
+                GameManager.instance.Reshuffle();
             }
         }
         else

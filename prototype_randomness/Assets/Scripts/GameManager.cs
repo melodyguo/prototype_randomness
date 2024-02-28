@@ -10,9 +10,13 @@ public class GameManager : MonoBehaviour
 
     public float timer;
     public TMP_Text timerText;
+    public GameObject player;
+    public Vector3 spawnOffset = new Vector3(0.09f, -0.25f, 0f);
+    public GameObject roomSpawner;
     
     void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
         // Ensure there is only one instance of the GameManager
         if (instance == null)
         {
@@ -27,6 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         timerText.text = Mathf.Ceil(timer).ToString();
+        Instantiate(roomSpawner, new Vector3(0f, 0f, 0f), Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -46,5 +51,15 @@ public class GameManager : MonoBehaviour
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(currentSceneIndex);
         }
+    }
+
+    public void Reshuffle()
+    {
+        GameObject[] rooms = GameObject.FindGameObjectsWithTag("room");
+        foreach (GameObject room in rooms)
+        {
+            Destroy(room);
+        }
+        Instantiate(roomSpawner, player.gameObject.transform.position - spawnOffset, Quaternion.identity); 
     }
 }
